@@ -1,0 +1,120 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--space) * 2);
+  padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+}
+
+.brand__mark {
+  width: 26px;
+  height: 26px;
+  fill: var(--paper);
+}
+
+.brand__mark-empty {
+  opacity: 0.3;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.user-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+}
+
+.user-picker__label {
+  font-size: var(--text-sm);
+  opacity: 0.75;
+}
+
+.user-picker__select {
+  min-width: 170px;
+  padding: 6px 10px;
+  border: 1px solid rgba(243, 242, 248, 0.3);
+  border-radius: var(--radius-sm);
+  background: var(--ink-soft);
+  color: var(--paper);
+}
+
+/* Workspace: chat + meter panel */
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  min-height: 0;
+}
+
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: calc(var(--space) * 3);
+}
+
+.meters {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) * 3);
+  padding: calc(var(--space) * 3);
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .app {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .meters {
+    order: -1;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+    padding: calc(var(--space) * 2);
+  }
+
+  .chat-panel {
+    min-height: 70vh;
+    padding: calc(var(--space) * 2);
+  }
+
+  .app-header {
+    padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+  }
+
+  .user-picker__label {
+    display: none;
+  }
+
+  .user-picker__select {
+    min-width: 0;
+    max-width: 150px;
+  }
+}
