@@ -48,6 +48,17 @@ export default function App() {
     setUpgrade({ open: false, reason: 'manual' });
   }, [selectedUserId]);
 
+  // A FREE user who arrives with no tokens left sees the upgrade modal right away (once per user).
+  const autoUpgradeShownFor = useRef(null);
+  useEffect(() => {
+    if (!status || status.userId !== selectedUserId) return;
+    const quotaExhausted = status.plan === 'FREE' && !status.unlimitedTokens && status.tokensRemaining <= 0;
+    if (quotaExhausted && autoUpgradeShownFor.current !== selectedUserId) {
+      autoUpgradeShownFor.current = selectedUserId;
+      setUpgrade({ open: true, reason: 'quota' });
+    }
+  }, [status, selectedUserId]);
+
   // When the per-minute window ends on the server, read the fresh counters.
   const lastResetRefresh = useRef(null);
   useEffect(() => {
