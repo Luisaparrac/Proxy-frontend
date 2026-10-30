@@ -2,8 +2,6 @@
 
 Interfaz en **React + Vite** para la plataforma de consumo de IA con proxy de rate limiting y cuotas. Consume la API de [Proxy-backend](https://github.com/Luisaparrac/Proxy-backend).
 
-Autora: **Luisa Fernanda Parra Cabrera** — Ingeniería de Software, Universidad Cooperativa de Colombia.
-
 ## Funcionalidades
 
 - Chat para enviar prompts al servicio de IA simulado.
@@ -51,9 +49,4 @@ Abre `http://localhost:5173`.
 - **Pago simulado:** pulsa "Usar tarjeta de prueba" (4242 4242 4242 4242). No se hace ningún cobro.
 - **Sin límites:** elige a *Acme Corp* (ENTERPRISE).
 
-## Despliegue en Vercel
 
-1. En Vercel: **Add New → Project** e importa el repo `Proxy-frontend`.
-2. Vercel detecta Vite automáticamente (build `npm run build`, salida `dist`).
-3. En **Environment Variables** agrega `VITE_API_URL` con la URL pública del backend en Railway, sin `/` al final.
-4. Pulsa **Deploy**. Si cambias la variable después, vuelve a desplegar para que tome el nuevo valor.
