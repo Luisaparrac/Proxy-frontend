@@ -43,13 +43,16 @@ export default function App() {
     onQuotaExceeded: handleQuotaExceeded,
   });
 
+  // Tracks whether the upgrade modal was already shown automatically for the current selection.
+  const autoUpgradeShownFor = useRef(null);
+
   useEffect(() => {
     setRetryUntil(0);
     setUpgrade({ open: false, reason: 'manual' });
+    autoUpgradeShownFor.current = null;
   }, [selectedUserId]);
 
-  // A FREE user who arrives with no tokens left sees the upgrade modal right away (once per user).
-  const autoUpgradeShownFor = useRef(null);
+  // A FREE user selected with no tokens left sees the upgrade modal right away.
   useEffect(() => {
     if (!status || status.userId !== selectedUserId) return;
     const quotaExhausted = status.plan === 'FREE' && !status.unlimitedTokens && status.tokensRemaining <= 0;
